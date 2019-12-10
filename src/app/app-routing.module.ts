@@ -6,6 +6,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { ErrorComponent } from './events/error/error.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { EventListResolver } from './events/shared/event-list-resolver.service';
+// import { UserModule } from './user/user.module';
 
 const routes: Routes = [
   { path: 'events/new', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
