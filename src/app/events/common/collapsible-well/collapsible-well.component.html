@@ -1,0 +1,13 @@
+<div (click)="toggleContent()" class="well pointable">
+  <h4>
+    <ng-content select="[well-title]"></ng-content>
+  </h4>
+
+  <ng-content *ngIf="visible" select="[well-body]"></ng-content>
+</div>
+
+
+<!-- ng-content has a select attribute that accepts normal css selectors like #, . etc and works like any css selector
+  attribute selectors (select="[well-title]") can also be used like the one in use right now instead of css selectors,
+  then the "well-title" is specified on an html element to select.
+ -->
