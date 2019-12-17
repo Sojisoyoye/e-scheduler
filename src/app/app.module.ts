@@ -7,7 +7,7 @@ import { EventsListComponent } from './events/events-list/events-list.component'
 import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventService } from './events/shared/event.service';
-import { ToastrService } from './events/common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './events/common/toastr.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorComponent } from './events/error/error.component';
@@ -20,6 +20,8 @@ import { SessionListComponent } from './events/event-details/session-list/sessio
 import { CollapsibleWellComponent } from './events/common/collapsible-well/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
 
+// const toastr: Toastr = window.toastr;
+declare let toastr: Toastr;
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,7 @@ import { DurationPipe } from './events/shared/duration.pipe';
   ],
   providers: [
     EventService,
-    ToastrService,
+    { provide: TOASTR_TOKEN, useValue: toastr },
     AuthService,
     EventRouteActivator,
     EventListResolver,
