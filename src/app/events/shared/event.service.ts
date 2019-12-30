@@ -43,11 +43,14 @@ export class EventService {
       );
       matchingSessions = matchingSessions.map((session: any) => {
         session.eventId = event.id;
+        console.log('>>>>>>>>>>>', session);
         return session;
       });
       results = results.concat(matchingSessions);
     });
 
+    // to return an observable we use event emitter, passing true in the eventEmitter tells it to
+    // deliver the events asynchronously.
     const emitter = new EventEmitter(true);
     setTimeout(() => {
       emitter.emit(results);

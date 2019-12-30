@@ -8,7 +8,7 @@ import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnai
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventService } from './events/shared/event.service';
 import { TOASTR_TOKEN, Toastr } from './events/common/toastr.service';
-import { JQ_TOKEN } from './events/common/jQuery.service';
+// import { JQ_TOKEN } from './events/common/jQuery.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorComponent } from './events/error/error.component';
@@ -23,9 +23,11 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import { SimpleModalComponent } from './events/common/simple-modal/simple-modal.component';
 import { ModalTriggerDirective } from './events/common/modal-trigger.directive';
 
-const toastr: Toastr = window['toastr'];
-const jQuery = window['$'];
-// declare let toastr: Toastr;
+// const toastr: Toastr = window['toastr'];
+// const jQuery = window['$'];
+// using this cause aot compilation
+declare let toastr: Toastr;
+declare let jQuery: '$';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,7 @@ const jQuery = window['$'];
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
-    { provide: JQ_TOKEN, useValue: jQuery },
+    // { provide: JQ_TOKEN, useValue: jQuery },
     AuthService,
     EventRouteActivator,
     EventListResolver,
