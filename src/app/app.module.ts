@@ -8,7 +8,7 @@ import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnai
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventService } from './events/shared/event.service';
 import { TOASTR_TOKEN, Toastr } from './events/common/toastr.service';
-// import { JQ_TOKEN } from './events/common/jQuery.service';
+import { JQ_TOKEN } from './events/common/jQuery.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorComponent } from './events/error/error.component';
@@ -22,12 +22,15 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well/colla
 import { DurationPipe } from './events/shared/duration.pipe';
 import { SimpleModalComponent } from './events/common/simple-modal/simple-modal.component';
 import { ModalTriggerDirective } from './events/common/modal-trigger.directive';
+import { UpvoteComponent } from './events/event-details/upvote/upvote.component';
+import { VoterService } from './events/event-details/upvote/voter.service';
+import { LocationValidatorDirective } from './events/create-event/location-validator.directive';
 
 // const toastr: Toastr = window['toastr'];
-// const jQuery = window['$'];
+const jQuery = window['$'];
 // using this cause aot compilation
 declare let toastr: Toastr;
-declare let jQuery: '$';
+// declare let jQuery: '$';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,9 @@ declare let jQuery: '$';
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -53,8 +58,9 @@ declare let jQuery: '$';
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
-    // { provide: JQ_TOKEN, useValue: jQuery },
+    { provide: JQ_TOKEN, useValue: jQuery },
     AuthService,
+    VoterService,
     EventRouteActivator,
     EventListResolver,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
