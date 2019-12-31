@@ -9,7 +9,7 @@ import { EventService } from '../shared/event.service';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-  isDirty: true;
+  isDirty: boolean = true;
   event: any;
   constructor(private router: Router, private eventService: EventService) { }
 
@@ -21,7 +21,9 @@ export class CreateEventComponent implements OnInit {
   }
 
   saveEvent(formValues) {
-    this.eventService.saveEvent(formValues);
-    this.router.navigate(['events']);
+    this.eventService.saveEvent(formValues).subscribe(() => {
+      this.isDirty = false;
+      this.router.navigate(['events']);
+    });
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { EventService } from '../shared/event.service';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EventListResolver implements Resolve<any> {
@@ -9,7 +9,7 @@ export class EventListResolver implements Resolve<any> {
   }
 
   resolve() {
-    return this.eventService.getEvents().pipe(map(events => events));
+    return this.eventService.getEvents();
   }
 }
 
@@ -24,3 +24,5 @@ export class EventListResolver implements Resolve<any> {
 // the advantage of this is that we only load our data once
 // and it is then available on the route so no need to wait for data to be
 // in the resolver and then loaded again in the component
+
+// resolver automatically subscribes to an observable that it gets

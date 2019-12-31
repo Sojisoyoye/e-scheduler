@@ -12,7 +12,8 @@ import { JQ_TOKEN } from './events/common/jQuery.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorComponent } from './events/error/error.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+// import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { EventResolver } from './events/shared/event-resolver.service';
 import { EventListResolver } from './events/shared/event-list-resolver.service';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { ModalTriggerDirective } from './events/common/modal-trigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote/upvote.component';
 import { VoterService } from './events/event-details/upvote/voter.service';
 import { LocationValidatorDirective } from './events/create-event/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 // const toastr: Toastr = window['toastr'];
 const jQuery = window['$'];
@@ -53,7 +55,8 @@ declare let toastr: Toastr;
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     EventService,
@@ -61,7 +64,7 @@ declare let toastr: Toastr;
     { provide: JQ_TOKEN, useValue: jQuery },
     AuthService,
     VoterService,
-    EventRouteActivator,
+    EventResolver,
     EventListResolver,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
